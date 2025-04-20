@@ -10,6 +10,10 @@ module.exports = {
   defaultNetwork: "hardhat",
   solidity: "0.8.28",
   networks: {
+    localhost: {
+      url: "http://127.0.0.1:8545",
+      chainId: 31337,
+    },
     sepolia: {
       url: SEPOLIA_URL,
       accounts: [PRIVATE_KEY],
