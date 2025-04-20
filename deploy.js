@@ -5,12 +5,13 @@ require('dotenv').config();
 //compile the contract
 async function main() {
   const provider = new ethers.JsonRpcProvider(process.env.RPC_URL);
-  const encryptedJsonKey = fs.readFileSync('./.encryptedKey.json', 'utf-8');
-  let wallet = ethers.Wallet.fromEncryptedJsonSync(
-    encryptedJsonKey,
-    process.env.PRIVATE_KEY_PASSWORD,
-  );
-  wallet = wallet.connect(provider);
+  const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
+//   const encryptedJsonKey = fs.readFileSync('./.encryptedKey.json', 'utf-8');
+//   let wallet = ethers.Wallet.fromEncryptedJsonSync(
+//     encryptedJsonKey,
+//     process.env.PRIVATE_KEY_PASSWORD,
+//   );
+//   wallet = wallet.connect(provider);
 
   const abi = fs.readFileSync('./SimpleStorage_sol_SimpleStorage.abi', 'utf-8');
   const binary = fs.readFileSync('./SimpleStorage_sol_SimpleStorage.bin', 'utf-8');
