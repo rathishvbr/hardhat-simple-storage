@@ -1,10 +1,12 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("@nomicfoundation/hardhat-verify");
+require("hardhat-gas-reporter");
+
 require("dotenv").config();
 require("./tasks/block-number");
 
 /** @type import('hardhat/config').HardhatUserConfig */
-const { PRIVATE_KEY, SEPOLIA_URL, ETHERSCAN_API_KEY } = process.env;
+const { PRIVATE_KEY, SEPOLIA_URL, ETHERSCAN_API_KEY, COINMARKETCAP_API_KEY } = process.env;
 
 module.exports = {
   defaultNetwork: "hardhat",
@@ -22,5 +24,15 @@ module.exports = {
   },
   etherscan: {
     apiKey: ETHERSCAN_API_KEY,
+  },
+  gasReporter: {
+    enabled: process.env.REPORT_GAS ? true : false,
+    outputFile: "gas-report.txt",
+    noColors: true,
+    currency: "USD",
+    coinmarketcap: COINMARKETCAP_API_KEY,
+    token: "ETH",
+    gasPriceApi: "https://api.etherscan.io/api?module=proxy&action=eth_gasPrice",
+    gasPrice: 21
   },
 };
