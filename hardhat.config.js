@@ -1,6 +1,7 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("@nomicfoundation/hardhat-verify");
 require("dotenv").config();
+require("./tasks/block-number");
 
 /** @type import('hardhat/config').HardhatUserConfig */
 const { PRIVATE_KEY, SEPOLIA_URL, ETHERSCAN_API_KEY } = process.env;
